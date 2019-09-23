@@ -19,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import com.hepta.mercado.entity.Fabricante;
 import com.hepta.mercado.entity.Produto;
 import com.hepta.mercado.persistence.ProdutoDAO;
 
@@ -52,7 +53,15 @@ public class ProdutoService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@POST
 	public Response produtoCreate(Produto produto) {
-		return Response.status(Status.NOT_IMPLEMENTED).build();
+		try {
+			Fabricante fabricante = new Fabricante();
+			fabricante.setNome("FabricanteC");
+			produto.setFabricante(fabricante);
+			dao.save(produto);
+		}catch(Exception e) {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Erro ao inserir produto").build();
+		}
+		return Response.status(Status.ACCEPTED).build();
 	}
 	
 	/**

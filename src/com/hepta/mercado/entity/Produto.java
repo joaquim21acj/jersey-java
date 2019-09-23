@@ -2,6 +2,7 @@ package com.hepta.mercado.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
 public class Produto implements Serializable {
@@ -24,6 +27,7 @@ public class Produto implements Serializable {
 		
 	@ManyToOne
 	@JoinColumn(name = "ID_FABRICANTE")
+	@Cascade(org.hibernate.annotations.CascadeType.ALL)
 	private Fabricante fabricante;
 	
 	@Column(name = "VOLUME")

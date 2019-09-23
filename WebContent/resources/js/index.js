@@ -26,8 +26,7 @@ var inicio = new Vue({
 		},
     }
 });
-function novoproduto(){
-    document.getElementById("myButton").onclick = function () {
-        location.href = "www.yoursite.com";
-    };
+function ApagarProduto(id){
+	
+	
 }

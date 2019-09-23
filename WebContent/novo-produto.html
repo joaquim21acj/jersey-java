@@ -2,26 +2,36 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<link rel="shortcut icon" href="favicon.ico"/>
-	<title>Cadastrar um novo Produto </title>
-	<link rel="stylesheet" type="text/css"
-		href="resources/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css"
-		href="resources/css/main.css">
+<meta charset="utf-8">
+<link rel="shortcut icon" href="favicon.ico" />
+<title>Cadastrar um novo Produto</title>
+<link rel="stylesheet" type="text/css"
+	href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/main.css">
 </head>
 
 <body>
 
-<a href="/mercado/index.html">Voltar</a>
+	<a href="/home/joaquim/joaquim/jersey-java/WebContent/index.html">Voltar</a>
 
-<div id="app">
-	<p>{{mensagem}}</p>
-	
-	<h4>Cadastro de produto</h4>
-		
-	<p>Implementar o cadastro de produto</p>	
-</div>
+	<div id="app">
+		<h4>Cadastro de produto</h4>
+		<form name="formNovoProduto" onsubmit="return novoProduto()"
+			method="post">
+			Nome:<br> <input type="text" name="nome" value=""><br>
+			Volume:<br> <input type="text" name="volume" value=""><br>
+			Unidade:<br> <input type="text" name="unidade" value=""><br>
+			Estoque:<br> <input type="text" name="estoque" value=""><br>
+			Fabricante:<br>
+			<select id="fabricantes">
+				<option value="">Escolha um Fabricante</option>
+			</select>
+			<br>
+			<input type="submit" value="Salvar">
+			
+		</form>
+
+	</div>
 
 	<script src="resources/js/vue.js"></script>
 	<script src="resources/js/axios.min.js"></script>

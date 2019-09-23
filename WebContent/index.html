@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="utf-8">
-<link rel="shortcut icon" href="favicon.ico"/>
+<link rel="shortcut icon" href="favicon.ico" />
 <title>Inventário Mercadinho - Início</title>
 <link rel="stylesheet" type="text/css"
 	href="resources/css/bootstrap.min.css">
@@ -14,36 +14,68 @@
 <body>
 
 	<div class="text-center">
-	<a href="novo-produto.html">Novo Produto</a>	
+		<a href="novo-produto.html">Novo Produto</a>
 	</div>
 
-	<div id="inicio" class="container-fluid table" >
+	<div id="inicio" class="container-fluid table">
 		<h4>Lista de Produtos</h4>
 		<table>
-		  <tr>
-			<th>Nome</th>
-			<th>Fabricante</th>
-			<th>Volume</th>
-			<th>Unidade</th>
-			<th>Estoque</th>
-			<th></th>
-			<th></th>
-		  </tr>
-		  <tbody id="event-table" >
-			<tr v-for="produto in listaProdutos">
-			  <td>{{ produto.nome }}</td> 
-			  <td>{{ produto.fabricante.nome }}</td> 
-			  <td>{{ produto.volume }}</td> 
-			  <td>{{ produto.unidade }}</td> 
-			  <td>{{ produto.estoque }}</td>
-			  <td><span onclick="ApagarProduto(produto.id)" @click="">&#9998;</span>
-				<span  @click="">&#10006;</span>
-			  </td>
+			<tr>
+				<th>Nome</th>
+				<th>Fabricante</th>
+				<th>Volume</th>
+				<th>Unidade</th>
+				<th>Estoque</th>
+				<th></th>
+				<th></th>
 			</tr>
-		  </tbody>
+			<tbody id="event-table">
+				<tr v-for="produto in listaProdutos"
+					:class="{editing: produto == produtoEditado}" v-cloak>
+					<td>
+						<div class="view">{{ produto.nome }}</div>
+						<div class="edit">
+							<input type="text" v-model="produto.nome" />
+						</div>
+					</td>
+					<td>
+						<div class="view">{{ produto.fabricante.nome }}</div>
+						<div class="edit">
+							<input type="text" v-model="produto.fabricante.nome" />
+						</div>
+					</td>
+					<td>
+						<div class="view">{{ produto.volume }}</div>
+						<div class="edit">
+							<input type="text" v-model="produto.volume" />
+						</div>
+					</td>
+					<td>
+						<div class="view">{{ produto.unidade }}</div>
+						<div class="edit">
+							<input type="text" v-model="produto.unidade" />
+						</div>
+					</td>
+					<td>
+						<div class="view">{{ produto.estoque }}</div>
+						<div class="edit">
+							<input type="text" v-model="produto.estoque" />
+						</div>
+					</td>
+					<td>
+						<div class="view">
+							<button @click="editar(produto)">&#9998;</button>
+						</div>
+						<div class="edit">
+							<button @click="saveData(user)">Salvar</button>
+						</div>
+						<button onclick>&#10006;</button>
+					</td>
+				</tr>
+			</tbody>
 		</table>
-	  </div>
-	  
+	</div>
+
 	<script src="resources/js/vue.js"></script>
 	<script src="resources/js/axios.min.js"></script>
 	<script src="resources/js/index.js"></script>

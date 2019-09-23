@@ -87,6 +87,7 @@ public class ProdutoService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@PUT
 	public Response produtoUpdate(@PathParam("id") Integer id, Produto produto) {
+		
 		return Response.status(Status.NOT_IMPLEMENTED).build();
 	}
 	

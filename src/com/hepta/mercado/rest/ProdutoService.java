@@ -54,9 +54,6 @@ public class ProdutoService {
 	@POST
 	public Response produtoCreate(Produto produto) {
 		try {
-			Fabricante fabricante = new Fabricante();
-			fabricante.setNome("FabricanteC");
-			produto.setFabricante(fabricante);
 			dao.save(produto);
 		}catch(Exception e) {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Erro ao inserir produto").build();
@@ -96,8 +93,12 @@ public class ProdutoService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@PUT
 	public Response produtoUpdate(@PathParam("id") Integer id, Produto produto) {
-		
-		return Response.status(Status.NOT_IMPLEMENTED).build();
+		try {
+			dao.update(produto);
+		}catch(Exception e) {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Erro ao atualizar produto").build();
+		}
+		return Response.status(Status.ACCEPTED).build();
 	}
 	
 	/**
@@ -110,7 +111,12 @@ public class ProdutoService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@DELETE
 	public Response produtoDelete(@PathParam("id") Integer id) {
-		return Response.status(Status.NOT_IMPLEMENTED).build();
+		try {
+			dao.delete(id);
+		}catch(Exception e) {
+			return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Erro ao remover produto").build();
+		}
+		return Response.status(Status.ACCEPTED).build();
 	}
 
 }

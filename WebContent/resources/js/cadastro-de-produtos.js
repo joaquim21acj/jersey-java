@@ -1,57 +1,34 @@
-var select = document.getElementById("fabricantes");
-listaFabricantes = [];
-//getListaFabricantes().then((data) => {listaFabricantes = data.data});
- listaFabricantes = ["fabricanteA", "fabricanteB"];
-for (var n=0; n<listaFabricantes.length; n++){
-    var opt = listaFabricantes[n];
-    var el = document.createElement("option");
-    el.textContent = opt;
-    el.value = opt;
-    select.appendChild(el);
-}
-
-function Produto(_nome, _volume, _unidade, _estoque) {
+function Produto(_nome, _volume, _unidade, _estoque, _fabricante) {
 	this.nome = _nome;
 	this.volume = _volume;
 	this.unidade = _unidade;
 	this.estoque = _estoque;
+	this.fabricante = _fabricante;
 }
-function Fabricante(_id, _nome) {
-	this.Nome = _nome;
-	this.Id = _id;
+function Fabricante(_nomeFab) {
+	this.nome = _nomeFab;
 }
-// function validateForm() {
-// var x = document.forms["formNovoProduto"]["nome"].value;
-// if (x == "") {
-// alert("aquiiii");
-// return false;
-// }
-// }
+function validateForm() {
+ var x = document.forms["formNovoProduto"]["nome"].value;
+ if (x == "") {
+ alert("aquiiii");
+ return false;
+ }
+ }
 function novoProduto() {
+	fabricante = new Fabricante(document.forms["formNovoProduto"]["fabricante"].value);
 	produto = new Produto(document.forms["formNovoProduto"]["nome"].value,
 			document.forms["formNovoProduto"]["volume"].value,
 			document.forms["formNovoProduto"]["unidade"].value,
-			document.forms["formNovoProduto"]["estoque"].value);
-	alert(produto.nome);
+			document.forms["formNovoProduto"]["estoque"].value,
+			fabricante);
 	axios.post("/mercado/rs/produtos",produto)
 	 .then(function(response){
-	 console.log('salvo com sucesso')
+		 alert("Salvo com sucesso")
 	 }).catch(function (error) {
 	 alert("Erro interno", "Não foi possível salvar novo produto");
 	 }).finally(function() {
+		 alert("Salvo com sucesso2")
 	 });
 
-}
-function carregaProduto(id){
-	// axios.get("/mercado/rs/produtos/{id}")
-	// .then(response => {listaFabricantes = response.data;
-	// }).catch(function (error) {
-// vm.mostraAlertaErro("Erro interno", "Não foi listar fabricantes");
-	// }).finally(function() {
-	// })
-	return "ok";
-}
-
-function getListaFabricantes(){
-	return axios.get("/mercado/rs/fabricantes").then(response => response.data);
 }

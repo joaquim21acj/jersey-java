@@ -18,11 +18,21 @@ var inicio = new Vue({
     },
     methods:{
     	salvar () {
-    	      
+//    		alert(this.produtoEditado.id);
+    		axios.put("/mercado/rs/produtos/"+this.produtoEditado.id, this.produtoEditado);
+    		location.reload();
         },
-        editar (produto) {
-            this.beforEditCache = produto
-            this.produtoEditado = produto
+        editar (_produto) {
+//        	alert("aquiEditar");
+        	this.antesDaEdicao = _produto;
+            this.produtoEditado = _produto;
+          },
+        deleta(produto){
+        	 axios.delete("/mercado/rs/produtos/"+produto.id);
+        	 location.reload();
+          },
+        mostraAlertaErro(stringA, stringB){
+        	alert(stringA+stringB);  
           },
         buscaProdutos: function(){
 			const vm = this;
@@ -35,28 +45,8 @@ var inicio = new Vue({
 		},
     }
 });
-//function editaProduto(){
+//function editaProduto(produto){
 //	alert("aqui");
+//	alert(produto.id);
+//	
 //}
-
-function editaProduto(produto){
-	alert("Aqui");
-	alert(nome);
-    var par = $(this).parent().parent(); //tr
-    var nome = par.children("td:nth-child(1)");
-    var nomeFabricante = par.children("td:nth-child(2)");
-    var volume = par.children("td:nth-child(3)");
-    var unidade = par.children("td:nth-child(4)");
-    var estoque = par.children("td:nth-child(5)");
-    var salvar = par.children("td:nth-child(6)");
- 
-    nome.html("<input type='text' id='txtName' value='"+nome.html()+"'/>");
-    nomeFabricante.html("<input type='text' id='txtPhone' value='"+nomeFabricante.html()+"'/>");
-    volume.html("<input type='text' id='txtEmail' value='"+volume.html()+"'/>");
-    unidade.html("<input type='text' id='txtEmail' value='"+unidade.html()+"'/>");
-    estoque.html("<input type='text' id='txtEmail' value='"+estoque.html()+"'/>");
-    salvar.html("<button>ok</button>");
- 
-    $(".btnSave").bind("click", Save);
-
-};

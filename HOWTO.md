@@ -19,3 +19,7 @@
  
 # Rodar os Testes
 
+- 
+- Adicionar o teste ao build path na aba source, clicar com o botão direito do mouse em cima do projeto clicar em "Build Path" e depois "configure Build Path...";
+- Adicionar o JUnit as bibliotecas usando o build path, na aba libraries;
+- Com o Botão direito clicar no projeto, depois em "Run as...", "JUnit Test" (O servidor TomCat já tem que estar rodando);
